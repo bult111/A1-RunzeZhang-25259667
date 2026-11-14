@@ -96,6 +96,105 @@ This is a **runtime object graph**, not a folder tree. For example,
 package. `Appointment` contains a `Patient`, a `HealthProfessional`, and a
 `TimeSlot` through composition.
 
+The same relationships as a Mermaid class diagram:
+
+```mermaid
+classDiagram
+    class HealthProfessional {
+        <<abstract>>
+        -String id
+        -String name
+        -Set~Weekday~ availableDays
+        +getRole() String
+        +getRoleDetails() String
+        +performRoleDuty(Patient) String
+    }
+
+    class GeneralPractitioner {
+        -String medicalLicenceNumber
+        -boolean bulkBilling
+        +prescribe()
+    }
+
+    class Specialist {
+        -String specialty
+        -double consultationFee
+        +orderDiagnosticTest()
+    }
+
+    class Nurse {
+        -String ward
+        -String shift
+        +takeBloodSample()
+    }
+
+    class Dietitian {
+        -String specialisation
+        -boolean acceptsReferrals
+        +createMealPlan()
+    }
+
+    class Patient {
+        -String name
+        -String mobileNumber
+    }
+
+    class TimeSlot {
+        -LocalTime startTime
+        -LocalTime endTime
+        +getLabel() String
+        +compareTo(TimeSlot) int
+    }
+
+    class ClinicSchedule {
+        -List~TimeSlot~ slots
+        +contains(TimeSlot) boolean
+        +getSlot() TimeSlot
+    }
+
+    class Appointment {
+        -Patient patient
+        -HealthProfessional professional
+        -TimeSlot timeSlot
+        +compareTo(Appointment) int
+    }
+
+    class AppointmentManager {
+        -List~Appointment~ appointments
+        -ClinicSchedule schedule
+        +addAppointment()
+        +getAllAppointments()
+        +cancelAppointment()
+        +cancelAppointmentsForPatient()
+    }
+
+    HealthProfessional <|-- GeneralPractitioner
+    HealthProfessional <|-- Specialist
+    HealthProfessional <|-- Nurse
+    HealthProfessional <|-- Dietitian
+    Appointment *-- Patient
+    Appointment *-- HealthProfessional
+    Appointment *-- TimeSlot
+    ClinicSchedule o-- TimeSlot
+    AppointmentManager o-- Appointment
+    AppointmentManager o-- ClinicSchedule
+```
+
+Package dependencies are one-way:
+
+```mermaid
+flowchart LR
+    Entry[AssignmentOne] --> Model[model]
+    Entry --> Service[service]
+    Entry --> Util[util]
+    Service --> Model
+    Service --> Util
+    Model --> Util
+```
+
+GitHub renders Mermaid blocks. If a local Markdown viewer does not, the ASCII
+diagram above conveys the same relationships.
+
 ## 5. Design decisions by part
 
 ### Part 1 — Modelling a health professional
