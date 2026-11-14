@@ -56,6 +56,17 @@ default package so it can be started with `java -cp out AssignmentOne`.
 - [Test plan](docs/test-plan.md) — test cases, expected results, traceability,
   and known limitations.
 
+## Assessment mapping
+
+| Part | Implementation |
+|---|---|
+| Part 1 | `HealthProfessional`, `Weekday`, `Validation` |
+| Part 2 | `GeneralPractitioner`, `Specialist`, `Nurse`, `Dietitian` |
+| Part 3 | `AssignmentOne` — `List<HealthProfessional>` and polymorphic loops |
+| Part 4 | `Patient`, `TimeSlot`, `ClinicSchedule`, `Appointment` |
+| Part 5 | `AppointmentManager` |
+| Part 6 | `AssignmentOne.demonstrateAppointmentSystem()` |
+
 ## Compile and run
 
 ```bash
@@ -65,6 +76,12 @@ java -cp out AssignmentOne
 
 The program prints the health professional hierarchy, polymorphic behaviour,
 the appointment workflow, and both normal and error cases.
+
+## Build output
+
+`javac -d out ...` writes the compiled `.class` files to `out/`. The `out/`
+directory and `*.class` files are ignored by Git and should not be committed.
+Only the `.java` sources belong in the repository.
 
 ## Notes
 
