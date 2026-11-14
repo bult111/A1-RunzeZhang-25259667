@@ -138,6 +138,24 @@ uses `Weekday.today()`, the printed available days and the weekday named in the
 unavailable-professional warning change with the run date. The booking counts do
 not change.
 
+### Actual output excerpts
+
+The following lines are copied from the final run. Weekday names are omitted
+here because they depend on the run date.
+
+```text
+SUCCESS: Jordan Lee booked with General Practitioner Amelia Clarke (ID 1001) at 09:00 - 09:30.
+SUCCESS: Mia Chen booked with Specialist Sophia Chen (ID 2001) at 09:30 - 10:00.
+WARNING: Amelia Clarke is already booked at 09:00 - 09:30.
+WARNING: 17:00 - 17:30 is outside the clinic schedule (08:00-16:00, 30-minute slots, 16 slots).
+Filtered by health professional ID 1001:
+SUCCESS: Cancelled 2 appointment(s) for 0423 456 789.
+WARNING: No appointment found for health professional ID 9999 at 12:00 - 12:30.
+WARNING: A patient mobile number must be supplied.
+Appointments remaining: 4
+End of demonstration.
+```
+
 ## 7. Traceability to the assignment parts
 
 | Assignment part | Covered by |
